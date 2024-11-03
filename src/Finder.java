@@ -50,6 +50,10 @@ public class Finder {
 
     public String query(String key){
 
-        return INVALID;
+        int keyHash = hash(key);
+        if(table[keyHash] == null) {
+            return INVALID;
+        }
+        return table[keyHash].get((int)(Math.random() * table[keyHash].size()));
     }
 }
