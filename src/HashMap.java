@@ -10,8 +10,8 @@ public class HashMap {
         }
     }
 
-    public final static int DEFAULT_TABLE_SIZE = 20;
-    public final static int RADIX = 256;
+    public final static int DEFAULT_TABLE_SIZE = 89;
+    public final static int RADIX = 257;
     private int tableSize;
     private int keysInserted;
 
@@ -34,7 +34,7 @@ public class HashMap {
     public void add(String key, String value) {
         keysInserted += 1;
 
-        double alpha = keysInserted / (double) tableSize;
+        double alpha = keysInserted / ((double) tableSize);
         if (alpha > .5) {
             resize();
         }
@@ -73,8 +73,6 @@ public class HashMap {
             }
         }
         map = newMap;
-
-
 
     }
 

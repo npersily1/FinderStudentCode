@@ -24,10 +24,12 @@ public class Finder {
     }
 
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
-        while (br.readLine() != null) {
-            String s = br.readLine();
+        String s = br.readLine();
+        while (s != null) {
+
             String[] line = s.split(",");
             hashMap.add(line[keyCol],line[valCol]);
+            s = br.readLine();
         }
 
         br.close();
