@@ -49,11 +49,24 @@ public class HashMap {
     }
 
     public String get(String key) {
-
+        int hash = hash(key);
+        while (map[hash] != null) {
+            if(map[hash].key.equals(key))
+                return map[hash].value;
+            ++hash;
+        }
+        return "INVALID KEY";
     }
 
     private void resize() {
+        tableSize *= 2;
+        Pair[] newMap = new Pair[tableSize];
 
+        for (int i = 0; i < map.length; i++) {
+            int hash = hash(map[i].key);
+            newMap[hash] = map[i];
+        }
+        map = newMap;
 
 
 
