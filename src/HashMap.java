@@ -53,7 +53,7 @@ public class HashMap {
         while (map[hash] != null) {
             if(map[hash].key.equals(key))
                 return map[hash].value;
-            ++hash;
+            hash = (hash + 1) % tableSize;
         }
         return "INVALID KEY";
     }
@@ -63,14 +63,19 @@ public class HashMap {
         Pair[] newMap = new Pair[tableSize];
 
         for (int i = 0; i < map.length; i++) {
-            int hash = hash(map[i].key);
-            newMap[hash] = map[i];
+            if(!(map[i] == null)) {
+                int hash = hash(map[i].key);
+
+                while (newMap[hash] != null) {
+                    hash = (hash + 1) % tableSize;
+                }
+                newMap[hash] = map[i];
+            }
         }
         map = newMap;
 
 
 
     }
-
 
 }
